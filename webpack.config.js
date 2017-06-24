@@ -50,7 +50,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: '[name].[ext]',
+      name: 'images/[name]_[sha512:hash:base64:7].[ext]'
     },
   }),
 ]);

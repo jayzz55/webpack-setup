@@ -71,8 +71,8 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__main_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_main_scss__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_main_scss__);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ((text = 'Hello world') => {
@@ -81,7 +81,7 @@
   element.innerHTML = text;
 
   // Attach the generated class name
-  element.className = __WEBPACK_IMPORTED_MODULE_0__main_scss___default.a.redButton;
+  element.className = __WEBPACK_IMPORTED_MODULE_0_main_scss___default.a.redButton;
 
   return element;
 });
@@ -135,17 +135,17 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_purecss__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_purecss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_purecss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__component2__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component3__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_components_component2__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_components_component3__ = __webpack_require__(2);
 
 
 
 
 
-document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__component__["a" /* default */])());
-document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__component2__["a" /* default */])());
-document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__component3__["a" /* default */])());
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__components_component__["a" /* default */])());
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_components_component2__["a" /* default */])());
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_components_component3__["a" /* default */])());
 
 
 /***/ }),

@@ -129,14 +129,33 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|svg)$/,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         include,
         exclude,
-
-        use: {
-          loader: 'url-loader',
-          options,
-        },
+        use: [
+          {
+            loader: 'url-loader',
+            options,
+          },
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              mozjpeg: {
+                progressive: true,
+              },
+              gifsicle: {
+                interlaced: true,
+              },
+              optipng: {
+                optimizationLevel: 7,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          },
+        ]
       },
     ],
   },
