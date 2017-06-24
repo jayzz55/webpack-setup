@@ -1,4 +1,7 @@
 const path = require('path');
+const merge = require('webpack-merge');
+const parts = require('./webpack.parts');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
@@ -7,81 +10,41 @@ const PATHS = {
   build: path.join(__dirname, 'build'),
 };
 
-const commonConfig = {
-  entry: {
-    app: PATHS.app,
-  },
-  output: {
-    path: PATHS.build,
-    filename: '[name].js',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo',
-    }),
-    // new DashboardPlugin(),
-  ],
-};
-
-const productionConfig = () => commonConfig;
-
-const developmentConfig = () => {
-  const config = {
-    devServer: {
-      // Enable history API fallback so HTML5 History API based
-      // routing works. Good for complex setups.
-      historyApiFallback: true,
-
-      // Display only errors to reduce the amount of output.
-      stats: 'errors-only',
-
-      // Parse host and port from env to allow customization.
-      //
-      // If you use Docker, Vagrant or Cloud9, set
-      // host: options.host || '0.0.0.0';
-      //
-      // 0.0.0.0 is available to all network devices
-      // unlike default `localhost`.
-      host: process.env.HOST, // Defaults to `localhost`
-      port: process.env.PORT, // Defaults to 8080
-      // overlay: true is equivalent
-      overlay: {
-        errors: true,
-        warnings: true,
-      },
+const commonConfig = merge([
+  {
+    entry: {
+      app: PATHS.app,
     },
-    module: {
-      rules: [
-        {
-          test: /\.js$/,
-          enforce: 'pre',
-          exclude: /node_modules/,
-          loader: 'eslint-loaderadfaf',
-          options: {
-            emitWarning: true,
-            emitError: true,
-          },
-        },
-      ],
+    output: {
+      path: PATHS.build,
+      filename: '[name].js',
     },
-  };
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: 'Webpack demo',
+      }),
+      new DashboardPlugin(),
+    ],
+  },
+  parts.lintJavaScript({ include: PATHS.app }),
+  parts.loadCSS(),
+]);
 
-  return Object.assign(
-    {},
-    commonConfig,
-    config
-  );
-};
+const productionConfig = merge([
+]);
 
+const developmentConfig = merge([
+  parts.devServer({
+    // Customize host/port here if needed
+    host: process.env.HOST,
+    port: process.env.PORT,
+  }),
+]);
 
 module.exports = (env) => {
-  console.log('env', env);
-
-  return commonConfig;
-
   if (env === 'production') {
-    return productionConfig();
+    return merge(commonConfig, productionConfig);
   }
 
-  return developmentConfig();
+  return merge(commonConfig, developmentConfig);
 };

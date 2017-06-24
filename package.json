@@ -6,18 +6,25 @@
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server --env development",
     "build": "webpack --env production",
-    "lint": "eslint app/ webpack.*.js --cache",
+    "lint": "eslint app/ webpack.*.js --cache --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"]
+    "app/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "devDependencies": {
+    "css-loader": "^0.28.4",
     "eslint": "^4.0.0",
     "eslint-loader": "1.8.0",
+    "fast-sass-loader": "^1.2.5",
     "html-webpack-plugin": "^2.28.0",
     "husky": "^0.13.4",
     "lint-staged": "^4.0.0",
+    "node-sass": "^4.5.3",
+    "style-loader": "^0.18.2",
     "webpack": "^2.6.1",
     "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^2.4.5",
