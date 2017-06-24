@@ -1,4 +1,5 @@
 const path = require('path');
+const { basename, dirname, join, relative, resolve } = require('path')
 const glob = require('glob');
 const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
@@ -9,6 +10,8 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
+  node_modules: path.join(__dirname, 'node_modules'),
+  extensions: ['.js', '.jsx', '.css', '.scss', '.sass', '.png', '.jpg', '.svg']
 };
 
 const commonConfig = merge([
@@ -26,6 +29,13 @@ const commonConfig = merge([
       }),
       new DashboardPlugin(),
     ],
+    resolve: {
+      extensions: PATHS.extensions,
+      modules: [
+        resolve(PATHS.app),
+        resolve(PATHS.node_modules),
+      ],
+    },
   },
   parts.lintJavaScript({ include: PATHS.app }),
 ]);
@@ -37,6 +47,12 @@ const productionConfig = merge([
   parts.purifyCSS({
     paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
   }),
+  parts.loadImages({
+    options: {
+      limit: 15000,
+      name: '[name].[ext]',
+    },
+  }),
 ]);
 
 const developmentConfig = merge([
@@ -46,6 +62,7 @@ const developmentConfig = merge([
     port: process.env.PORT,
   }),
   parts.loadCSS(),
+  parts.loadImages(),
 ]);
 
 module.exports = (env) => {

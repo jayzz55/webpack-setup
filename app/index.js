@@ -1,7 +1,7 @@
 import 'purecss';
-import component from './component';
-import component2 from './component2';
-import component3 from './component3';
+import component from './components/component';
+import component2 from 'components/component2';
+import component3 from 'components/component3';
 
 document.body.appendChild(component());
 document.body.appendChild(component2());
