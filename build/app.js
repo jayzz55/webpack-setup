@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__main_scss__);
 
 
@@ -109,18 +109,47 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__component__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component2__ = __webpack_require__(1);
+/* harmony default export */ __webpack_exports__["a"] = ((text = 'Hello world') => {
+  const element = document.createElement('div');
 
 
+  element.className = 'pure-button';
 
-document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__component__["a" /* default */])());
-document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__component2__["a" /* default */])());
+  element.innerHTML = text;
+
+  return element;
+});
 
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_purecss__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_purecss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_purecss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__component__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__component2__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component3__ = __webpack_require__(2);
+
+
+
+
+
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__component__["a" /* default */])());
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__component2__["a" /* default */])());
+document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__component3__["a" /* default */])());
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
