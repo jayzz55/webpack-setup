@@ -2,4 +2,7 @@
   background: red; }
 
 body {
-  background: cornsilk; }
+  background: cornsilk;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
