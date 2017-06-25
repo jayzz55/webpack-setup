@@ -37,9 +37,9 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
         use: ['style-loader'],
       },
       {
-        test: /\.(scss|sass|css)$/,
+        test: /\.(css)$/,
         include: /node_modules/,
-        use: ['css-loader', 'fast-sass-loader'],
+        use: ['css-loader'],
       },
       {
         test: /\.(scss|sass)$/,
@@ -60,7 +60,7 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
   },
 });
 
-exports.extractCSS = ({ include, exclude, use }) => {
+exports.extractCSS = () => {
   // Output extracted CSS to a file
   const plugin = new ExtractTextPlugin({
     filename: '[name].css',
@@ -70,34 +70,33 @@ exports.extractCSS = ({ include, exclude, use }) => {
     module: {
       rules: [
         {
-          test: /\.(scss|sass|css)$/,
-          include,
-          exclude,
-
+          test: /\.(css)$/,
           use: plugin.extract({
-            use,
+            use: [
+              'css-loader',
+              exports.autoprefix()
+            ],
             fallback: 'style-loader',
           }),
         },
         {
-          test: /\.(scss|sass|css)$/,
-          include: /node_modules/,
-          use: ['css-loader', 'fast-sass-loader'],
-        },
-        {
           test: /\.(scss|sass)$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                modules: true,
+          use: plugin.extract({
+            use: [
+              {
+                loader: 'css-loader',
+                options: {
+                  localIdentName: 'purify_[hash:base64:5]',
+                  modules: true
+                }
               },
-            },
-            {
-              loader: 'fast-sass-loader',
-            }
-          ]
+              exports.autoprefix(),
+              {
+                loader: 'fast-sass-loader',
+              },
+            ],
+            fallback: 'style-loader',
+          }),
         },
       ],
     },
@@ -119,6 +118,7 @@ exports.purifyCSS = ({ paths }) => ({
     new PurifyCSSPlugin({
       paths,
       purifyOptions: {
+        whitelist: ['*purify*'],
         minify: true
       },
     }),

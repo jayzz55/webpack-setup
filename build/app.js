@@ -153,6 +153,7 @@ document.body.appendChild(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_comp
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+module.exports = {"redButton":"purify_1u0i7","impossibleButton":"purify_64A_z","unusedLi":"purify_1KZtN"};
 
 /***/ })
 /******/ ]);
