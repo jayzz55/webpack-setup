@@ -152,11 +152,39 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
               pngquant: {
                 quality: '65-90',
                 speed: 4
-              }
-            }
+              },
+              svgo:{
+                plugins: [
+                  {
+                    removeViewBox: false
+                  },
+                  {
+                    removeEmptyAttrs: false
+                  },
+                ]
+              },
+            },
           },
         ]
       },
     ],
   },
 });
+
+exports.loadFonts = ({ include, exclude, options } = {}) => ({
+  module: {
+    rules: [
+      {
+        // Capture eot, ttf, woff, and woff2
+        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        include,
+        exclude,
+
+        use: {
+          loader: 'file-loader',
+          options,
+        },
+      },
+    ],
+  },
+})
