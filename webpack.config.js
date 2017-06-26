@@ -43,6 +43,7 @@ const commonConfig = merge([
       name: '[name].[hash:8].[ext]',
     },
   }),
+  parts.loadJavaScript({ include: PATHS.app }),
 ]);
 
 const productionConfig = merge([
