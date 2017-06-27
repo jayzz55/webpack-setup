@@ -47,6 +47,7 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  parts.clean(PATHS.build),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.extractCSS(),
   parts.purifyCSS({
@@ -70,6 +71,7 @@ const productionConfig = merge([
 
     },
   ]),
+  parts.attachRevision(),
 ]);
 
 const developmentConfig = merge([
