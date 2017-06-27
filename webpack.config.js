@@ -1,5 +1,5 @@
 const path = require('path');
-const { basename, dirname, join, relative, resolve } = require('path')
+const { basename, dirname, join, relative, resolve } = require('path');
 const glob = require('glob');
 const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
@@ -11,7 +11,7 @@ const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build'),
   node_modules: path.join(__dirname, 'node_modules'),
-  extensions: ['.js', '.jsx', '.css', '.scss', '.sass', '.png', '.jpg', '.svg']
+  extensions: ['.js', '.jsx', '.css', '.scss', '.sass', '.png', '.jpg', '.svg'],
 };
 
 const commonConfig = merge([
@@ -55,7 +55,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: 'images/[name]_[sha512:hash:base64:7].[ext]'
+      name: 'images/[name]_[sha512:hash:base64:7].[ext]',
     },
   }),
   parts.extractBundles([

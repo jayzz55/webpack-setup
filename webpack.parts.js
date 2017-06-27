@@ -54,8 +54,8 @@ exports.loadCSS = ({ include, exclude } = {}) => ({
           },
           {
             loader: 'fast-sass-loader',
-          }
-        ]
+          },
+        ],
       },
     ],
   },
@@ -75,7 +75,7 @@ exports.extractCSS = () => {
           use: plugin.extract({
             use: [
               'css-loader',
-              exports.autoprefix()
+              exports.autoprefix(),
             ],
             fallback: 'style-loader',
           }),
@@ -88,8 +88,8 @@ exports.extractCSS = () => {
                 loader: 'css-loader',
                 options: {
                   localIdentName: 'purify_[hash:base64:5]',
-                  modules: true
-                }
+                  modules: true,
+                },
               },
               exports.autoprefix(),
               {
@@ -120,7 +120,7 @@ exports.purifyCSS = ({ paths }) => ({
       paths,
       purifyOptions: {
         whitelist: ['*purify*'],
-        minify: true
+        minify: true,
       },
     }),
   ],
@@ -152,21 +152,21 @@ exports.loadImages = ({ include, exclude, options } = {}) => ({
               },
               pngquant: {
                 quality: '65-90',
-                speed: 4
+                speed: 4,
               },
               svgo:{
                 plugins: [
                   {
-                    removeViewBox: false
+                    removeViewBox: false,
                   },
                   {
-                    removeEmptyAttrs: false
+                    removeEmptyAttrs: false,
                   },
-                ]
+                ],
               },
             },
           },
-        ]
+        ],
       },
     ],
   },
@@ -188,7 +188,7 @@ exports.loadFonts = ({ include, exclude, options } = {}) => ({
       },
     ],
   },
-})
+});
 
 exports.loadJavaScript = ({ include, exclude }) => ({
   module: {
