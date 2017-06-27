@@ -44,10 +44,18 @@ const commonConfig = merge([
     },
   }),
   parts.loadJavaScript({ include: PATHS.app }),
+  parts.lodashWebpackPlugin(),
 ]);
 
 const productionConfig = merge([
   parts.clean(PATHS.build),
+  parts.compressFiles({
+    asset: "[path].gz[query]",
+    algorithm: "gzip",
+    test: /\.(js|html)$/,
+    threshold: 10240,
+    minRatio: 0.8
+  }),
   parts.minifyJavaScript(),
   parts.minifyCSS({
     options: {
@@ -83,6 +91,10 @@ const productionConfig = merge([
     },
   ]),
   parts.attachRevision(),
+  parts.setFreeVariable(
+    'process.env.NODE_ENV',
+    'production'
+  ),
 ]);
 
 const developmentConfig = merge([

@@ -6,6 +6,8 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+const CompressionPlugin = require("compression-webpack-plugin");
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
   devServer: {
@@ -18,6 +20,28 @@ exports.devServer = ({ host, port } = {}) => ({
       warnings: true,
     },
   },
+});
+
+exports.lodashWebpackPlugin = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: ['lodash'],
+            presets: [['env', { 'modules': false, 'targets': { 'node': 4 } }]]
+          }
+        }
+      }
+    ]
+  },
+  plugins: [
+    new LodashModuleReplacementPlugin,
+    new webpack.optimize.UglifyJsPlugin
+  ]
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
@@ -254,5 +278,22 @@ exports.minifyCSS = ({ options }) => ({
       cssProcessorOptions: options,
       canPrint: false,
     }),
+  ],
+});
+
+exports.setFreeVariable = (key, value) => {
+  const env = {};
+  env[key] = JSON.stringify(value);
+
+  return {
+    plugins: [
+      new webpack.DefinePlugin(env),
+    ],
+  };
+};
+
+exports.compressFiles = (options) => ({
+  plugins: [
+    new CompressionPlugin(options)
   ],
 });

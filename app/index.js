@@ -7,6 +7,10 @@ import component2 from 'components/component2';
 import component3 from 'components/component3';
 import component4 from 'components/component4';
 
+import { toString } from 'lodash';
+
+console.log(toString(123455667));
+
 document.body.appendChild(component());
 document.body.appendChild(component2());
 document.body.appendChild(component3());
