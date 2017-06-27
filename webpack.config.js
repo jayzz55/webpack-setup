@@ -58,6 +58,18 @@ const productionConfig = merge([
       name: 'images/[name]_[sha512:hash:base64:7].[ext]'
     },
   }),
+  parts.extractBundles([
+    {
+      name: 'vendor',
+
+      minChunks: ({ resource }) => (
+        resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/)
+      ),
+
+    },
+  ]),
 ]);
 
 const developmentConfig = merge([

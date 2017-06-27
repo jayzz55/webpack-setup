@@ -45,6 +45,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "font-awesome": "^4.7.0",
-    "purecss": "^1.0.0"
+    "purecss": "^1.0.0",
+    "react": "^15.6.1"
   }
 }
