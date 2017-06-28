@@ -1,5 +1,7 @@
 const path = require('path');
 const { basename, dirname, join, relative, resolve } = require('path');
+
+const webpack = require('webpack');
 const glob = require('glob');
 const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
@@ -48,6 +50,21 @@ const commonConfig = merge([
 ]);
 
 const productionConfig = merge([
+  {
+    performance: {
+      hints: 'warning', // 'error' or false are valid too
+      maxEntrypointSize: 250000, // in bytes
+      maxAssetSize:      450000, // in bytes
+    },
+    output: {
+      chunkFilename: '[name].[chunkhash:8].js',
+      filename:      '[name].[chunkhash:8].js',
+      // publicPath:    '/repo-name/',
+    },
+    plugins: [
+      new webpack.HashedModuleIdsPlugin(),
+    ],
+  },
   parts.clean(PATHS.build),
   parts.compressFiles({
     asset: "[path].gz[query]",
@@ -75,7 +92,7 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: 'images/[name]_[sha512:hash:base64:7].[ext]',
+      name: 'images/[name].[hash:8].[ext]',
     },
   }),
   parts.extractBundles([
