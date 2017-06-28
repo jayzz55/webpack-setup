@@ -67,11 +67,11 @@ const productionConfig = merge([
   },
   parts.clean(PATHS.build),
   parts.compressFiles({
-    asset: "[path].gz[query]",
-    algorithm: "gzip",
+    asset: '[path].gz[query]',
+    algorithm: 'gzip',
     test: /\.(js|html)$/,
     threshold: 10240,
-    minRatio: 0.8
+    minRatio: 0.8,
   }),
   parts.minifyJavaScript(),
   parts.minifyCSS({

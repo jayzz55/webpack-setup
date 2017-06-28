@@ -1,5 +1,6 @@
 {
   "presets": [
+    "react",
     [
       "env",
       {
@@ -9,6 +10,6 @@
         },
         "useBuiltIns": true
       }
-    ]
+    ],
   ]
 }

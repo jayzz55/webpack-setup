@@ -6,7 +6,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 exports.devServer = ({ host, port } = {}) => ({
@@ -32,16 +32,16 @@ exports.lodashWebpackPlugin = () => ({
           loader: 'babel-loader',
           options: {
             plugins: ['lodash'],
-            presets: [['env', { 'modules': false, 'targets': { 'node': 4 } }]]
-          }
-        }
-      }
-    ]
+            presets: [['env', { 'modules': false, 'targets': { 'node': 4 } }]],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new LodashModuleReplacementPlugin,
-    new webpack.optimize.UglifyJsPlugin
-  ]
+    new webpack.optimize.UglifyJsPlugin,
+  ],
 });
 
 exports.lintJavaScript = ({ include, exclude, options }) => ({
@@ -294,6 +294,6 @@ exports.setFreeVariable = (key, value) => {
 
 exports.compressFiles = (options) => ({
   plugins: [
-    new CompressionPlugin(options)
+    new CompressionPlugin(options),
   ],
 });
