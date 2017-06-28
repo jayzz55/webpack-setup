@@ -84,11 +84,11 @@ const productionConfig = merge([
       safe: true,
     },
   }),
+  parts.purifyCSS({
+    paths: glob.sync(`${PATHS.app}/**/*`, { nodir: true }),
+  }),
   parts.generateSourceMaps({ type: 'source-map' }),
   parts.extractCSS(),
-  parts.purifyCSS({
-    paths: glob.sync(`${PATHS.app}/**/*.js`, { nodir: true }),
-  }),
   parts.loadImages({
     options: {
       limit: 15000,
