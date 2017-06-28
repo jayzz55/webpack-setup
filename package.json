@@ -8,6 +8,7 @@
     "st": "webpack-dev-server --env development",
     "build": "webpack --env production",
     "lint": "eslint app/ webpack.*.js --cache --fix",
+    "stats": "webpack --env production --progress --profile --json > stats.json",
     "precommit": "lint-staged"
   },
   "lint-staged": {
